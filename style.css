@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url('https://birthday.mewtru.com/_next/static/media/card-texture.c262ac14.jpg'); 
+  background-size:cover;
+  /* background-position-y: -170px; */
+}
+
+h1 {
+  margin-top: 50px;
+  /* border: 1px solid rgb(255, 255, 255); */
+  cursor: pointer;
+  background-color: #30eea2;
+  color: rgb(0, 0, 0);
+  padding: 2px;
+  position: relative;
+}
+h1 img{
+  position: absolute;
+
+}
+h1 :first-child{
+  left: -16px;
+  top: -40px;
+}
+h1 :last-child{
+  right: -16px;
+  top: -40px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#candle {
+  width: 12px;
+  height: 40px;
+  margin: 11px;
+  background-color: #30eea2;
+  border: 1px solid white;
+
+  position: relative;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#flame {
+  width: 10px;
+  height: 20px;
+  background-color: #ff4500;
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  animation: flicker 0.1s infinite alternate;
+  box-shadow: 1px 0px 15px #df7e0f;
+  z-index: 9999;
+  /* Smooth transition for fade-out effect */
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
+  /* fade out */
+}
+
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scaleY(1);
+    background-color: #ff4500;
+  }
+
+  100% {
+    transform: translateX(-50%) scaleY(0.9);
+    background-color: #ff5500;
+  }
+
+}
+
+/* .hidden {
+  opacity: 0;  Make the flame fade out smoothly 
+} */
+
+.candle_container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* Change from absolute to relative */
+  margin-top: -12px;
+}
+
+.cake_container {
+  border: 1px solid white;
+  height: 50vh;
+}
+
+.sc-candle_container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* Change from absolute to relative */
+  margin-top: -90px;
+  margin-right: 35px;
+  z-index: 999;
+}
+
+.first_cakePiece {
+  background-color: #59280f;
+  border-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  align-self: center;
+  height: 100px;
+  width: 50vw;
+  /* border: 1px solid white; */
+  position: relative;
+  z-index: 10;
+
+}
+
+.th_slice {
+  background-color: #e08e79;
+  /* border-radius: 50%;*/
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  align-self: center;
+  height: 140px;
+  width: 50vw;
+  top: 170px;
+  position: absolute;
+  z-index: 5;
+}
+
+.sc_slice {
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background-color: #ffffff;
+  align-self: center;
+  height: 150px;
+  width: 50vw;
+  top: 230px;
+  position: absolute;
+  z-index: 5;
+}
+
+.fr_slice {
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background-color: #774f38;
+  align-self: center;
+  height: 150px;
+  width: 50vw;
+  top: 300px;
+  position: absolute;
+  z-index: 4;
+}
+
+.candle1 {
+  background-color: #5fedb5;
+}
