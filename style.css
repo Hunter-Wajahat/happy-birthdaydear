@@ -1,162 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Outfit:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Outfit', sans-serif;
   text-align: center;
-  background-color: #000;
+  background-color: #0b0f19;
   color: white;
+  min-height: 100vh;
+  margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  background-image: url('https://birthday.mewtru.com/_next/static/media/card-texture.c262ac14.jpg'); 
-  background-size:cover;
-  /* background-position-y: -170px; */
+  background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.85)), url('https://birthday.mewtru.com/_next/static/media/card-texture.c262ac14.jpg'); 
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  padding: 20px 10px 50px 10px;
 }
 
-h1 {
-  margin-top: 50px;
-  /* border: 1px solid rgb(255, 255, 255); */
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* Header styling */
+.head {
+  font-family: 'Fredoka', sans-serif;
+  margin-top: 30px;
   cursor: pointer;
-  background-color: #30eea2;
-  color: rgb(0, 0, 0);
-  padding: 2px;
+  background: linear-gradient(90deg, #30eea2, #00d2ff);
+  color: #0b132b;
+  padding: 12px 35px;
+  border-radius: 50px;
   position: relative;
+  font-weight: 600;
+  font-size: 2rem;
+  box-shadow: 0 10px 25px rgba(48, 238, 162, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-h1 img{
-  position: absolute;
 
+.head:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(48, 238, 162, 0.4);
 }
-h1 :first-child{
-  left: -16px;
-  top: -40px;
+
+.head img {
+  position: absolute;
+  pointer-events: none;
 }
-h1 :last-child{
-  right: -16px;
+
+.head #balloon-left {
+  left: -45px;
   top: -40px;
-  -webkit-transform: scaleX(-1);
+  animation: float-left 3s ease-in-out infinite alternate;
+}
+
+.head #balloon-right {
+  right: -45px;
+  top: -40px;
   transform: scaleX(-1);
+  animation: float-right 3.5s ease-in-out infinite alternate;
 }
 
-#candle {
-  width: 12px;
-  height: 40px;
-  margin: 11px;
-  background-color: #30eea2;
-  border: 1px solid white;
-
-  position: relative;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+@keyframes float-left {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(6deg); }
 }
 
-#flame {
-  width: 10px;
-  height: 20px;
-  background-color: #ff4500;
-  position: absolute;
-  top: -19px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  animation: flicker 0.1s infinite alternate;
-  box-shadow: 1px 0px 15px #df7e0f;
-  z-index: 9999;
-  /* Smooth transition for fade-out effect */
+@keyframes float-right {
+  0% { transform: translateY(0) scaleX(-1) rotate(0deg); }
+  100% { transform: translateY(-10px) scaleX(-1) rotate(-6deg); }
+}
+
+/* Birthday custom text */
+.birthday-text {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0.1;
+  transform: scale(0.9);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.birthday-text.visible {
   opacity: 1;
-  transition: opacity 1.5s ease-out;
-  /* fade out */
+  transform: scale(1);
 }
 
-@keyframes flicker {
-  0% {
-    transform: translateX(-50%) scaleY(1);
-    background-color: #ff4500;
-  }
-
-  100% {
-    transform: translateX(-50%) scaleY(0.9);
-    background-color: #ff5500;
-  }
-
+/* Cake container / wrapper */
+.cake_wrapper {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 380px;
+  width: 100%;
 }
 
-/* .hidden {
-  opacity: 0;  Make the flame fade out smoothly 
-} */
+.first_cakePiece, .sc_slice, .th_slice, .fr_slice {
+  width: 90%;
+  max-width: 400px;
+}
+
+.first_cakePiece {
+  background: linear-gradient(180deg, #59280f, #3c1a0a);
+  border-radius: 50%;
+  align-self: center;
+  height: 100px;
+  position: relative;
+  z-index: 10;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.1);
+}
 
 .candle_container {
   display: flex;
   justify-content: center;
   position: relative;
-  /* Change from absolute to relative */
-  margin-top: -12px;
-}
-
-.cake_container {
-  border: 1px solid white;
-  height: 50vh;
+  margin-top: -16px;
+  z-index: 11;
+  padding: 0 10px;
 }
 
 .sc-candle_container {
   display: flex;
   justify-content: center;
   position: relative;
-  /* Change from absolute to relative */
-  margin-top: -90px;
-  margin-right: 35px;
+  margin-top: -95px;
   z-index: 999;
+  padding: 0 20px;
 }
 
-.first_cakePiece {
-  background-color: #59280f;
-  border-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  align-self: center;
-  height: 100px;
-  width: 50vw;
-  /* border: 1px solid white; */
+.candle {
+  width: 12px;
+  height: 42px;
+  margin: 0 8px;
+  background: linear-gradient(180deg, #30eea2, #188d5e);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
-  z-index: 10;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
 
+.candle:hover {
+  transform: scale(1.15) translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.candle1 {
+  background: linear-gradient(180deg, #ff758c, #b8334a);
+}
+
+.flame {
+  width: 12px;
+  height: 24px;
+  background: radial-gradient(circle at center, #ffffff 10%, #ffbb00 40%, #ff4500 80%);
+  position: absolute;
+  top: -23px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 20% 20%;
+  animation: flicker 0.12s infinite alternate;
+  box-shadow: 0 0 15px #ff5500, 0 0 5px #ffbb00;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Flame blown out class */
+.flame.extinguished {
+  opacity: 0 !important;
+  transform: translateX(-50%) scale(0.1) translateY(-10px) !important;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scaleY(1) rotate(-1deg);
+    filter: brightness(1);
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0.9) rotate(1deg);
+    filter: brightness(1.1);
+  }
 }
 
 .th_slice {
-  background-color: #e08e79;
-  /* border-radius: 50%;*/
+  background: linear-gradient(180deg, #e08e79, #c37059);
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
   align-self: center;
   height: 140px;
-  width: 50vw;
   top: 170px;
   position: absolute;
   z-index: 5;
+  box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.15), 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .sc_slice {
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
-  background-color: #ffffff;
+  background: linear-gradient(180deg, #ffffff, #e2e8f0);
   align-self: center;
   height: 150px;
-  width: 50vw;
   top: 230px;
   position: absolute;
   z-index: 5;
+  box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.3), 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .fr_slice {
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
-  background-color: #774f38;
+  background: linear-gradient(180deg, #774f38, #523524);
   align-self: center;
   height: 150px;
-  width: 50vw;
   top: 300px;
   position: absolute;
   z-index: 4;
+  box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1), 0 12px 25px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.candle1 {
-  background-color: #5fedb5;
+/* Mic status and volume indicator */
+.mic-status-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+  width: 90%;
+  max-width: 450px;
+}
+
+#instruction-text {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}
+
+.volume-meter-outline {
+  width: 100%;
+  max-width: 250px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.volume-meter-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #30eea2, #00f0ff);
+  border-radius: 10px;
+  transition: width 0.1s ease, background 0.2s ease;
+  box-shadow: 0 0 10px rgba(48, 238, 162, 0.7);
+}
+
+.volume-meter-bar.active-blow {
+  background: linear-gradient(90deg, #ff758c, #ff007f);
+  box-shadow: 0 0 12px rgba(255, 117, 140, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .head {
+    font-size: 1.5rem;
+    padding: 10px 25px;
+  }
+  
+  .head #balloon-left, .head #balloon-right {
+    height: 50px;
+    top: -30px;
+  }
+  
+  .head #balloon-left { left: -30px; }
+  .head #balloon-right { right: -30px; }
+  
+  .birthday-text {
+    font-size: 1.8rem;
+  }
+  
+  .cake_wrapper {
+    height: 300px;
+    margin-top: 60px;
+  }
+  
+  .first_cakePiece { height: 80px; }
+  .sc-candle_container { margin-top: -75px; }
+  .th_slice { height: 110px; top: 130px; }
+  .sc_slice { height: 120px; top: 180px; }
+  .fr_slice { height: 120px; top: 230px; }
+  
+  .candle {
+    height: 32px;
+    width: 9px;
+    margin: 0 5px;
+  }
+  
+  .flame {
+    width: 9px;
+    height: 18px;
+    top: -17px;
+  }
 }
