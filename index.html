@@ -2,126 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blow Out Candles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blow Out the Candles - Happy Birthday!</title>
+  <meta name="description" content="An interactive birthday cake with candles you can blow out using your microphone!">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- <div class="request">
-    <h1>Give access of mic</h1>
-  </div> -->
-  <h1 class="head"><img src="resorces/b.png" alt="ballon" height="70px">
-    Blow Out the Candles! <img src="resorces/b.png" alt="balloon" height="70px"></h1>
+  <!-- Canvas for Confetti -->
+  <canvas id="confetti-canvas"></canvas>
 
-  <div class="first_cakePiece">
-    <div class="candle_container">
-        <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-        <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          
-          </div>
-      </div>
-    
-    
-      <div class="sc-candle_container">
-        <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-        <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-        <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-        <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec center_flames"></div>
-          </div>
-          <div id="candle" class="candle1">
-            <div id="flame" class="flamec"></div>
-          </div>
-          
-          </div>
+  <!-- Title Section -->
+  <h1 class="head" id="main-heading">
+    <img src="resources/b.png" alt="balloon" height="70px" id="balloon-left">
+    <span id="title-text">Blow Out the Candles!</span>
+    <img src="resources/b.png" alt="balloon" height="70px" id="balloon-right">
+  </h1>
 
+  <h2 class="birthday-text" id="birthday-text">Wish you a wonderful year ahead!</h2>
+
+  <!-- Cake & Candles Section -->
+  <div class="cake_wrapper" id="cake-wrapper">
+    <div class="first_cakePiece">
+      <div class="candle_container">
+        <!-- 13 Candles on the first cake piece -->
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec"></div>
+        </div>
+        <div class="candle">
+          <div class="flame flamec center_flames"></div>
+        </div>
       </div>
-  </div>
-  <div class="sc_slice">
+    </div>
     
+    <div class="sc-candle_container">
+      <!-- 15 Candles on the second cake piece -->
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec center_flames"></div>
+      </div>
+      <div class="candle candle1">
+        <div class="flame flamec"></div>
+      </div>
+    </div>
   </div>
-  <div class="th_slice">
-    
-  </div>
-  <div class="fr_slice">
-    
-  </div>
+
+  <div class="sc_slice"></div>
+  <div class="th_slice"></div>
+  <div class="fr_slice"></div>
   
-  <p>Make a "pew" sound or blow into your mic!</p>
+  <!-- Microphone UX Status & Meter -->
+  <div class="mic-status-container" id="mic-status-container">
+    <p id="instruction-text">Make a "pew" sound, blow into your mic, or tap the candles!</p>
+    <div class="volume-meter-outline" id="volume-meter-outline">
+      <div class="volume-meter-bar" id="volume-meter-bar"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
-  <script src="second_script.js"></script>
 </body>
 </html>
